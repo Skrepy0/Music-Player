@@ -1,0 +1,37 @@
+/* ========== 调整播放器为灰色毛玻璃 ========== */
+.music-player {
+    /* 原有样式保留，仅修改背景色为更透明的灰色，增强毛玻璃感 */
+    background: rgba(40, 45, 55, 0.35);  /* 更透明，让背景图透出 */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    /* 可选：增加边框光感 */
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* 为了确保文字可读，可以微调文字颜色或阴影 */
+.track-name {
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.artist-name {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+/* ========== 播放器毛玻璃效果 ========== */
+.music-player {
+    background: rgba(45, 50, 65, 0.3) !important;  /* 灰色半透明 */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* 增强文字可读性 */
+.track-name {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.artist-name {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+.now-playing-badge {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}

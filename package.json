@@ -1,0 +1,13 @@
+{
+  "name": "Music-Player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "start.bat"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

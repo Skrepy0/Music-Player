@@ -1,0 +1,38 @@
+/* ========== 背景轮播 ========== */
+
+.background-carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #1a1f28; /* 默认背景色（无图片时显示） */
+}
+
+.background-carousel .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: carousel 30s infinite; /* 30秒总时长，可调整 */
+}
+
+/* 关键帧定义：淡入淡出效果 */
+@keyframes carousel {
+    0% { opacity: 0; }
+    8% { opacity: 1; }      /* 淡入 */
+    25% { opacity: 1; }     /* 保持显示 */
+    33% { opacity: 0; }     /* 淡出 */
+    100% { opacity: 0; }
+}
+
+/* 为每个 slide 设置不同的延迟，实现依次淡入淡出 */
+.background-carousel .slide:nth-child(1) { animation-delay: 0s; }
+.background-carousel .slide:nth-child(2) { animation-delay: 6s; }
+.background-carousel .slide:nth-child(3) { animation-delay: 12s; }

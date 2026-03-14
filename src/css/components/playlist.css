@@ -1,0 +1,94 @@
+/* ========== 播放列表 ========== */
+.playlist-preview {
+    margin-top: 24px;
+    max-height: 180px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 8px 10px 6px;  /* 增加内边距，让内容不贴边 */
+    background: rgba(0, 0, 0, 0.2);  /* 半透明背景，与工具条类似 */
+    border-radius: 24px;          /* 大圆角，与播放器卡片呼应 */
+
+    /* Firefox 滚动条 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(180, 190, 220, 0.5) rgba(30, 38, 54, 0.4);
+}
+
+/* 列表项基础样式 + 动画 */
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+
+    /* 入场动画 */
+    animation: itemFadeIn 0.3s ease-out forwards;
+
+    /* 过渡（用于悬停和点击） */
+    transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+    transform-origin: left; /* 缩放时从左向右展开，更自然 */
+}
+
+/* 入场关键帧 */
+@keyframes itemFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 悬停效果 */
+.playlist-item:hover {
+    background: rgba(100, 130, 190, 0.4);
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 点击瞬间反馈 */
+.playlist-item:active {
+    transform: scale(0.98);
+    background: rgba(120, 150, 210, 0.5);
+}
+
+/* 当前播放歌曲高亮 + 呼吸动画 */
+.playlist-item.active {
+    background: rgba(70, 90, 130, 0.5);
+    border-left: 4px solid #95abf0;
+    border-radius: 18px 12px 12px 18px;
+    animation: activeGlow 2s infinite ease-in-out;
+}
+
+/* 呼吸光晕 */
+@keyframes activeGlow {
+    0% { box-shadow: 0 0 5px #95abf0; }
+    50% { box-shadow: 0 0 15px #95abf0, 0 0 5px rgba(149, 171, 240, 0.5); }
+    100% { box-shadow: 0 0 5px #95abf0; }
+}
+
+/* WebKit 滚动条样式（保留原样） */
+.playlist-preview::-webkit-scrollbar {
+    width: 6px;
+}
+.playlist-preview::-webkit-scrollbar-track {
+    background: rgba(30, 38, 54, 0.4);
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+.playlist-preview::-webkit-scrollbar-thumb {
+    background: rgba(180, 190, 220, 0.5);
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+.playlist-preview::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 210, 240, 0.8);
+}

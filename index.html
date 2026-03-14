@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skrepy's Music Player</title>
+    <link rel="icon" type="image/png" sizes="500x500" href="resources/pictures/icon.png">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/components/toast.css">
+    <link rel="stylesheet" href="./src/css/components/background.css">
+    <link rel="stylesheet" href="./src/css/components/vinyl-record.css">
+    <link rel="stylesheet" href="./src/css/components/item-menu.css">
+    <link rel="stylesheet" href="./src/css/components/playlist.css">
+    <link rel="stylesheet" href="./src/css/components/music-player.css">
+    <link rel="stylesheet" href="./src/css/components/sort-select.css">
+    <link rel="stylesheet" href="./src/css/components/search-input.css">
+    <link rel="stylesheet" href="./src/css/components/ctrl-btn.css">
+    <link rel="stylesheet" href="./src/css/components/tool-item.css">
+</head>
+<body>
+<!-- 背景轮播容器 -->
+<div class="background-carousel" id="backgroundCarousel"></div>
+
+<div class="music-player">
+    <!-- 原有播放器结构不变 -->
+    <div class="player-header">
+        <div class="now-playing-badge no-select" id="nowPlayingBadge">⏵ 加载中...</div>
+    </div>
+
+    <div class="cover-section">
+        <div class="vinyl-record" id="vinylRecord"></div>
+    </div>
+
+    <div class="track-info">
+        <div class="track-name" id="trackName">--</div>
+        <div class="artist-name no-select" id="artistName">未知艺术家</div>
+    </div>
+
+    <div class="progress-area">
+        <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+        <div class="progress-bar-bg" id="progressBarBg">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="ctrl-btn prev-icon no-select" id="prevBtn" title="上一首"></div>
+        <div class="ctrl-btn large no-select" id="playPauseBtn" title="播放">▶</div>
+        <div class="ctrl-btn next-icon no-select" id="nextBtn" title="下一首"></div>
+    </div>
+
+    <div class="footer-tools">
+        <div class="tool-item">
+            <span>🔊</span>
+            <div class="volume-indicator">
+                <div class="volume-bar"><div class="volume-level" style="width: 70%;"></div></div>
+            </div>
+        </div>
+        <div class="tool-item no-select" id="modeBtn"><span>🔁</span> 顺序</div>
+        <div class="tool-item no-select" id="songCount">0 首</div>
+    </div>
+
+    <div class="search-sort-bar">
+        <input type="text" id="searchInput" placeholder="搜索歌曲或艺术家..." class="search-input">
+        <select id="sortSelect" class="sort-select no-select">
+            <option value="default">默认顺序</option>
+            <option value="title">按歌曲名</option>
+            <option value="artist">按艺术家</option>
+            <option value="duration">按时长</option>
+        </select>
+    </div>
+
+    <div class="playlist-preview" id="playlistContainer">
+        <div class="loading-msg no-select">正在扫描本地音乐...</div>
+    </div>
+</div>
+
+<div id="toast" class="toast">
+    <span class="toast-icon" id="toast-icon"></span>
+    <span class="toast-message" id="toast-message"></span>
+</div>
+
+<script src="src/script/system/utils.js"></script>
+<script src="src/script/system/storage.js"></script>
+<script src="src/script/system/ui.js"></script>
+<script src="src/script/system/player.js"></script>
+<script src="src/script/components/search-sort.js"></script>
+<script src="src/script/components/background.js"></script>
+<script src="src/script/components/toast.js"></script>
+<script src="./src/script/main.js"></script>
+</body>
+</html>

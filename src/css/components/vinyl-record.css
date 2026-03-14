@@ -1,0 +1,37 @@
+.vinyl-record {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #2e3b4e, #1b212c);
+    border-radius: 50%;
+    box-shadow: 0 20px 30px -8px black, 0 0 0 2px #2d3440 inset, 0 0 0 6px #262d38 inset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: spin 10s infinite linear;
+    animation-play-state: paused;
+}
+
+.vinyl-record::before {
+    content: "";
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: radial-gradient(circle at 30% 30%, #e0e5f0, #6e7b94);
+    border-radius: 50%;
+    border: 3px solid #1f2a36;
+    box-shadow: 0 0 0 8px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+.vinyl-record::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: #a1aec9;
+    border-radius: 50%;
+    border: 2px solid #262e3a;
+    z-index: 3;
+    box-shadow: 0 0 10px #bac3db;
+}

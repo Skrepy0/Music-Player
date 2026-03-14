@@ -1,0 +1,59 @@
+/* ========== 自定义下拉框 ========== */
+.sort-select {
+    /* 尺寸与布局 */
+    flex: 1;
+    padding: 10px 32px 10px 16px;  /* 右侧留出箭头空间 */
+
+    /* 外观 */
+    background: rgba(30, 38, 54, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;            /* 圆角 */
+    color: #f0f3f8;
+    font-size: 14px;
+
+    /* 移除默认箭头 */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /* 自定义箭头（SVG） */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b1bbd9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+
+    /* 动画过渡 */
+    transition: all 0.2s ease;
+    cursor: pointer;
+    outline: none;
+}
+
+/* 悬停效果 */
+.sort-select:hover {
+    background: rgba(45, 55, 75, 0.9);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* 聚焦效果（键盘或点击时） */
+.sort-select:focus {
+    border-color: #95abf0;
+    box-shadow: 0 0 0 3px rgba(149, 171, 240, 0.3);
+}
+
+/* 下拉选项基础样式（适用于所有浏览器） */
+.sort-select option {
+    background-color: #1a1f28;      /* 选项背景色 */
+    color: #f0f3f8;                 /* 文字颜色 */
+    font-size: 14px;                /* 字体大小 */
+    padding: 8px 12px;              /* 内边距（部分浏览器支持，如 Chrome 不支持） */
+}
+
+/* Firefox 中支持悬停效果 */
+.sort-select option:hover {
+    background-color: #2a3345;      /* 悬停时的背景色（仅 Firefox） */
+}
+
+/* 被选中的选项样式（部分浏览器支持） */
+.sort-select option:checked {
+    background-color: #3a4a6a;      /* 选中项的背景色 */
+    color: white;
+}

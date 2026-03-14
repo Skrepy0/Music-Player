@@ -1,0 +1,45 @@
+.search-sort-bar {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0 10px;
+    padding: 0 4px;
+    animation: slideDown 0.4s ease-out;  /* 添加进入动画 */
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-input {
+    flex: 2;
+    background: rgba(30, 38, 54, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 10px 16px;
+    color: #f0f3f8;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #95abf0;
+    background: rgba(40, 50, 70, 0.9);
+    transform: scale(1.02);           /* 轻微放大 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(149, 171, 240, 0.2);
+}
+.search-input::placeholder {
+    color: #7a87a8;
+}
+.search-input:focus::placeholder {
+    opacity: 0.5;
+    transform: translateX(5px);
+    transition: all 0.2s ease;
+}

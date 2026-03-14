@@ -1,0 +1,107 @@
+/* ========== 控制按钮增强版 ========== */
+.ctrl-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(26, 33, 46, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #eef3ff;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+
+    /* 精细化过渡 */
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* 相对定位用于伪元素光效 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 按钮悬停效果 */
+.ctrl-btn:hover {
+    background: rgba(56, 70, 100, 0.9);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);                 /* 轻微放大 */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(149, 171, 240, 0.3);
+}
+
+/* 点击按压效果 */
+.ctrl-btn:active {
+    transform: scale(0.96);                  /* 按下缩小 */
+    background: rgba(36, 46, 66, 0.9);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.05s;                   /* 快速响应 */
+}
+
+/* 大型播放按钮特殊样式 */
+.ctrl-btn.large {
+    width: 68px;
+    height: 68px;
+    background: linear-gradient(145deg, #2a3345, #1b212f);
+    font-size: 32px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 22px -5px #02040a;
+}
+
+/* 大型按钮悬停效果增强 */
+.ctrl-btn.large:hover {
+    background: linear-gradient(145deg, #354155, #252d3d);
+    transform: scale(1.06);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 28px -3px #02040a, 0 0 0 3px rgba(149, 171, 240, 0.3);
+}
+
+/* 大型按钮点击效果 */
+.ctrl-btn.large:active {
+    transform: scale(0.94);
+    background: linear-gradient(145deg, #1b212f, #2a3345); /* 反向渐变模拟凹陷 */
+    box-shadow: 0 6px 12px -2px #02040a, inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* 按钮内的图标（伪元素或文本）轻微动效 */
+.ctrl-btn::before {
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+.ctrl-btn:hover::before {
+    transform: scale(1.1);                    /* 图标微动 */
+}
+
+/* 可选：按钮外围光晕动画（仅用于播放按钮，避免过于花哨） */
+.ctrl-btn.large {
+    animation: subtlePulse 3s infinite ease-in-out;
+}
+
+@keyframes subtlePulse {
+    0% { box-shadow: 0 12px 22px -5px #02040a; }
+    50% { box-shadow: 0 15px 28px 0px #1e2a3a, 0 0 0 2px rgba(149, 171, 240, 0.2); }
+    100% { box-shadow: 0 12px 22px -5px #02040a; }
+}
+
+/* 按钮的伪元素光效（鼠标划过时扫光） */
+.ctrl-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.3s, transform 0.3s;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ctrl-btn:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}

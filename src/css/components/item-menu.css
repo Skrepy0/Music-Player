@@ -1,0 +1,56 @@
+/* 歌曲项菜单按钮 */
+.playlist-item {
+    position: relative;
+}
+
+.item-menu-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #bdc7e6;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.item-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+/* 菜单浮层 */
+.item-menu {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 38, 54, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 6px 0;
+    min-width: 50px;
+    width: 100px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    z-index: 1000;
+
+}
+
+.item-menu-item {
+    padding: 8px 16px;
+    color: #e1e8ff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.1s;
+    white-space: nowrap;
+}
+
+.item-menu-item:hover {
+    background: rgba(100, 120, 180, 0.5);
+}
