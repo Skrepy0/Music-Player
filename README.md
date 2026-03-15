@@ -18,7 +18,7 @@
 2. **下载项目**，进入目录
 3. **安装依赖**：`npm install express`
 4. **添加音乐**：将文件放入 `resources/music/`（可选背景图放入 `resources/background/`）
-5. **启动服务**：`node server.js`
+5. **启动服务**：`node server.js`或通过[start.pyw](./start.pyw)启动
 
 ## 📖 使用
 - 左键点击歌曲播放
