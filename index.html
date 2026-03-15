@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="./src/css/components/search-input.css">
     <link rel="stylesheet" href="./src/css/components/ctrl-btn.css">
     <link rel="stylesheet" href="./src/css/components/tool-item.css">
+
+    <script src="https://unpkg.com/pinyin-pro@3.17.0/dist/index.js"></script>
 </head>
 <body>
 <!-- 背景轮播容器 -->
@@ -53,7 +55,7 @@
     </div>
 
     <div class="footer-tools">
-        <div class="tool-item">
+        <div class="tool-item" id="volume-indicator">
             <span>🔊</span>
             <div class="volume-indicator">
                 <div class="volume-bar"><div class="volume-level" style="width: 70%;"></div></div>

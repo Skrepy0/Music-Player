@@ -6,7 +6,7 @@
   }
 
   let playPauseBtn, prevBtn, nextBtn, modeBtn, progressBarBg, progressFill, vinylRecord;
-  let volumeBar, volumeLevel;
+  let volumeBar, volumeLevel, volumeIndicator;
 
   function updateModeButton() {
     const icons = { order: '🔁', single: '🔂', random: '🔀' };
@@ -137,6 +137,7 @@
     // 音量控制
     volumeBar = document.querySelector('.volume-bar');
     volumeLevel = document.querySelector('.volume-level');
+    volumeIndicator = document.getElementById('volume-indicator');
     if (volumeBar && volumeLevel) {
       core.setVolume(0.7);
       volumeLevel.style.width = '70%';
@@ -173,7 +174,7 @@
 
       document.addEventListener('mouseup', () => isDragging = false);
 
-      volumeBar.addEventListener('wheel', (e) => {
+      volumeIndicator.addEventListener('wheel', (e) => {
         e.preventDefault();
         const delta = e.deltaY > 0 ? -0.05 : 0.05;
         const newVol = core.getAudio().volume + delta;
