@@ -20,19 +20,18 @@
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: carousel 30s infinite; /* 30秒总时长，可调整 */
 }
 
 /* 关键帧定义：淡入淡出效果 */
 @keyframes carousel {
-    0% { opacity: 0; }
-    8% { opacity: 1; }      /* 淡入 */
-    25% { opacity: 1; }     /* 保持显示 */
-    33% { opacity: 0; }     /* 淡出 */
+    0%   { opacity: 0; }
+    1%   { opacity: 1; }   /* 前 5% 时间完成淡入（比例越小淡入越快） */
+    20%  { opacity: 1; }   /* 5%～20% 保持显示 */
+    21%  { opacity: 0; }   /* 20%～25% 完成淡出（比例越小淡出越快） */
     100% { opacity: 0; }
 }
 
 /* 为每个 slide 设置不同的延迟，实现依次淡入淡出 */
 .background-carousel .slide:nth-child(1) { animation-delay: 0s; }
-.background-carousel .slide:nth-child(2) { animation-delay: 6s; }
-.background-carousel .slide:nth-child(3) { animation-delay: 12s; }
+.background-carousel .slide:nth-child(2) { animation-delay: 4s; }
+.background-carousel .slide:nth-child(3) { animation-delay: 8s; }
