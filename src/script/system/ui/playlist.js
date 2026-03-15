@@ -37,7 +37,10 @@ function renderPlaylist(playlist, currentIndex, filterText = '') {
   songCountEl.textContent = playlist.length + ' 首';
 
   container.style.position = 'relative';
+  registerEvents(container);
+}
 
+function registerEvents(container) {
   // 左键点击播放歌曲
   container.addEventListener('click', (e) => {
     const playlistItem = e.target.closest('.playlist-item');
@@ -94,7 +97,7 @@ function renderPlaylist(playlist, currentIndex, filterText = '') {
       menu.querySelector('.item-menu-item').addEventListener('click', () => {
         if (window.player && window.player.queueToNext) {
           window.player.queueToNext(parseInt(index));
-          showToast('已添加到下一首播放','info');
+          showToast('已添加到下一首播放', 'info');
         }
         window.closeCurrentMenu();
       });
@@ -107,6 +110,7 @@ function renderPlaylist(playlist, currentIndex, filterText = '') {
             document.removeEventListener('click', closeHandler);
           }
         }
+
         document.addEventListener('click', closeHandler);
       }, 0);
 
@@ -115,27 +119,7 @@ function renderPlaylist(playlist, currentIndex, filterText = '') {
         window.closeCurrentMenu();
         window.removeEventListener('scroll', scrollHandler);
       };
-      window.addEventListener('scroll', scrollHandler, { once: true });
+      window.addEventListener('scroll', scrollHandler, {once: true});
     });
   });
 }
-
-function updateNowPlaying(track) {
-  document.getElementById('trackName').textContent = track.title || '--';
-  document.getElementById('artistName').textContent = track.artist || '未知艺术家';
-  document.getElementById('nowPlayingBadge').innerHTML = `⏵ ${track.title || '--'}`;
-}
-
-function updateProgress(currentTime, duration, progressFill) {
-  document.getElementById('currentTime').textContent = formatTime(currentTime);
-  document.getElementById('duration').textContent = formatTime(duration);
-  const percent = (currentTime / duration) * 100 || 0;
-  progressFill.style.width = percent + '%';
-}
-
-window.closeCurrentMenu = function() {
-  if (window.currentMenu) {
-    window.currentMenu.remove();
-    window.currentMenu = null;
-  }
-};
