@@ -2,6 +2,7 @@
   const core = window.playerCore;
   if (!core) {
     console.error('player-core.js 必须先加载');
+    showToast('player-core.js 必须先加载','error')
     return;
   }
 
@@ -185,7 +186,6 @@
 
     updateModeButton();
   }
-
   // 构建最终暴露的 player 对象（包含 core 的所有方法 + init）
   window.player = {
     init,

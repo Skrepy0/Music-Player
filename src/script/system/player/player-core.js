@@ -136,6 +136,12 @@
       onPlaylistChange = callbacks.onPlaylistChange;
       onNowPlayingChange = callbacks.onNowPlayingChange;
     },
+    setIsPlaying: (playing) => {
+      isPlaying = playing;
+    },
+    setPlayMode: (mode) => {
+      playMode = mode;
+    },
 
     // 核心操作
     setVolume,
