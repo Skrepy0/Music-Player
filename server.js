@@ -1,16 +1,19 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process'); // 新增：用于执行打开浏览器的命令
+const { exec } = require('child_process');
 const app = express();
 const PORT = 3000;
 
 const musicDir = path.join(__dirname, 'resources', 'music');
 const backgroundDir = path.join(__dirname, 'resources', 'background');
+const pictureDir = path.join(__dirname, 'resources', 'pictures');
 
 // 静态资源
 app.use('/music', express.static(musicDir));
 app.use('/background', express.static(backgroundDir));
+app.use('/pictures', express.static(pictureDir));
+
 
 // API：获取音乐列表
 app.get('/api/music-list', (req, res) => {
@@ -25,6 +28,20 @@ app.get('/api/music-list', (req, res) => {
       return audioExtensions.includes(ext);
     });
     res.json(musicFiles);
+  });
+});
+app.get('/api/pictures-list', (req, res) => {
+  fs.readdir(pictureDir, (err, files) => {
+    if (err) {
+      console.error('读取图片目录失败:', err);
+      return res.status(500).json({ error: '无法读取图片目录' });
+    }
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp','.ico'];
+    const imageFiles = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return imageExtensions.includes(ext);
+    }).map(file => `/pictures/${encodeURIComponent(file)}`);
+    res.json(imageFiles);
   });
 });
 
@@ -46,13 +63,17 @@ app.get('/api/background-list', (req, res) => {
 
 // 提供前端静态文件
 app.use(express.static(__dirname));
-
+app.use((req, res, next) => {
+  console.log('404 请求路径:', req.url);
+  res.status(404).send('File not found');
+});
 // 启动服务器
 app.listen(PORT, () => {
   console.log(`🚀 本地音乐播放器已启动！
     ➜ 访问: http://localhost:${PORT}
     ➜ 音乐目录: ${musicDir}
-    ➜ 背景目录: ${backgroundDir}`);
+    ➜ 背景目录: ${backgroundDir}
+    ➜ 图片目录: ${pictureDir}`);
 
   // 自动在默认浏览器中打开页面
   const url = `http://localhost:${PORT}`;

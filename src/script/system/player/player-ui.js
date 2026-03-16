@@ -14,6 +14,25 @@
     const names = { order: '顺序', single: '单曲', random: '随机' };
     modeBtn.innerHTML = `<span>${icons[core.getPlayMode()]}</span> ${names[core.getPlayMode()]}`;
   }
+  function updatePauseBtn() {
+    if (!core.getNowPlaying() && core.getDisplayList().length > 0) {
+      core.playByIndex(0);
+    }
+    if (!core.getNowPlaying()) return;
+
+    if (core.isPlaying()) {
+      core.getAudio().pause();
+      core.setIsPlaying(false);
+      playPauseBtn.innerHTML = '▶';
+      vinylRecord.style.animationPlayState = 'paused';
+    } else {
+      core.getAudio().play().then(() => {
+        core.setIsPlaying(true);
+        playPauseBtn.innerHTML = '⏸';
+        vinylRecord.style.animationPlayState = 'running';
+      }).catch(e => showToast('播放失败: ' + e, "error"));
+    }
+  }
 
   function init(callbacks) {
     core.setCallbacks(callbacks);
@@ -46,28 +65,11 @@
     core.getAudio().addEventListener('ended', () => core.handleEnded());
 
     // 播放/暂停
-    playPauseBtn.addEventListener('click', () => {
-      if (!core.getNowPlaying() && core.getDisplayList().length > 0) {
-        core.playByIndex(0);
-      }
-      if (!core.getNowPlaying()) return;
-
-      if (core.isPlaying()) {
-        core.getAudio().pause();
-        core.setIsPlaying(false);
-        playPauseBtn.innerHTML = '▶';
-        vinylRecord.style.animationPlayState = 'paused';
-      } else {
-        core.getAudio().play().then(() => {
-          core.setIsPlaying(true);
-          playPauseBtn.innerHTML = '⏸';
-          vinylRecord.style.animationPlayState = 'running';
-        }).catch(e => showToast('播放失败: ' + e, "error"));
-      }
-    });
+    playPauseBtn.addEventListener('click', updatePauseBtn);
 
     // 上一首
     prevBtn.addEventListener('click', () => {
+      let playing = window.playerCore.isPlaying();
       const list = core.getDisplayList();
       if (list.length === 0 || !core.getNowPlaying()) return;
 
@@ -82,10 +84,12 @@
         const newIdx = (currentIdx - 1 + list.length) % list.length;
         core.playByIndex(newIdx);
       }
+      if (!playing)playPauseBtn.click();
     });
 
     // 下一首
     nextBtn.addEventListener('click', () => {
+      let playing = window.playerCore.isPlaying();
       if (core.getNextQueueTrack()) {
         const track = core.getNextQueueTrack();
         core.setNextQueueTrack(null);
@@ -110,6 +114,7 @@
         const newIdx = (currentIdx + 1) % list.length;
         core.playByIndex(newIdx);
       }
+      if (!playing)playPauseBtn.click();
     });
 
     // 进度条点击
@@ -194,6 +199,7 @@
     queueToNext: core.queueToNext,
     getDisplayList: core.getDisplayList,
     getCurrentIndex: core.getCurrentIndex,
-    getNowPlaying: core.getNowPlaying
+    getNowPlaying: core.getNowPlaying,
+    updatePauseBtn: updatePauseBtn
   };
 })();

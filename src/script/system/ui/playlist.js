@@ -47,6 +47,8 @@ function registerEvents(container) {
     if (!playlistItem) return;
     const index = playlistItem.dataset.index;
     if (index !== undefined) {
+      window.playerCore.setIsPlaying(true);
+      document.getElementById('playPauseBtn').innerHTML = '⏸';
       window.player.playByIndex(parseInt(index));
     }
   });
